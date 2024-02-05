@@ -2,6 +2,7 @@
 import { FormProvider, useForm } from "react-hook-form";
 import React, { useEffect, useState } from "react";
 import { getProviders, signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 interface HookFormTypes {
   _name: string;
@@ -15,6 +16,7 @@ export default function Page() {
   const { register, handleSubmit, getValues, watch } = methods;
 
   const [providers, setProviders] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     (async () => {
@@ -42,28 +44,18 @@ export default function Page() {
     );
     const user = await res.json();
     if (user) {
-      console.log(user);
+      router.push("/login");
       return user;
     } else {
-      console.log(watch("_name"));
-      console.log(watch("_email"));
-      console.log(watch("_password"));
       return null;
     }
-    // const result = await signIn("credentials", {
-    //   username: emailRef.current,
-    //   password: passwordRef.current,
-    //   redirect: true,
-    //   callbackUrl: "/",
-    // });
-    // console.log(result);
   };
 
   return (
     <div className="mx-auto w-full h-full">
       <div className="w-[24rem] mx-auto h-auto mt-[10%] border rounded-md border-solid border-slate-200 bg-white">
         <main className="px-3 py-6">
-          <h1 className="text-center text-3xl font-semibold mb-10">Login</h1>
+          <h1 className="text-center text-3xl font-semibold mb-10">회원가입</h1>
           <FormProvider {...methods}>
             <form onSubmit={handleSubmit(fnSubmit)}>
               <div>

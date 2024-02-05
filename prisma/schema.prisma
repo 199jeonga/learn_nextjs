@@ -16,7 +16,19 @@ model User {
   name     String?
   password String
   posts    Post[]
+  matasetting Metasetting[]
 }
+
+
+model Metasetting {
+  id        Int     @id @default(autoincrement())
+  title     String
+  keyword   String?
+  telnum   String?
+  author    User    @relation(fields: [authorId], references: [id])
+  authorId  Int
+}
+
 
 model Post {
   id        Int     @id @default(autoincrement())

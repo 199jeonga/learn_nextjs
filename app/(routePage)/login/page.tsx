@@ -28,7 +28,7 @@ export default function Page() {
 
   const handleSubmit = async () => {
     const result = await signIn("credentials", {
-      username: emailRef.current,
+      email: emailRef.current,
       password: passwordRef.current,
       redirect: true,
       callbackUrl: "/",
@@ -39,13 +39,12 @@ export default function Page() {
     <div className="mx-auto w-full h-full">
       <div className="w-[24rem] mx-auto h-auto mt-[10%] border rounded-md border-solid border-slate-200 bg-white">
         <main className="px-3 py-6">
-          <h1 className="text-center text-3xl font-semibold mb-10">Login</h1>
+          <h1 className="text-center text-3xl font-semibold mb-10">로그인</h1>
 
           <div className="flex mb-8">
             <button
               className="flex justify-center w-1/3 rounded-md border border-gray-200 text-slate-700 px-4 py-2 tracking-wide text-white transition-colors duration-200 hover:bg-sky-500 focus:outline-none mr-1"
               onClick={() =>
-                // signIn("kakao", { redirect: true, callbackUrl: "/" }).then(
                 signIn("kakao", { redirect: true, callbackUrl: "/" })
               }
             >

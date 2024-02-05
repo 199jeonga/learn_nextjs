@@ -3,13 +3,14 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import NaverProvider from "next-auth/providers/naver";
 import KAKAOProvider from "next-auth/providers/kakao";
+import * as API from "../../../lib/api";
 
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: {
+        email: {
           label: "이메일",
           type: "text",
           placeholder: "이메일 주소 입력 요망",
@@ -17,18 +18,19 @@ const handler = NextAuth({
         password: { label: "비밀번호", type: "password" },
       },
 
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         const res = await fetch(`${process.env.NEXTAUTH_URL}/api/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            username: credentials?.username,
+            email: credentials?.email,
             password: credentials?.password,
           }),
         });
         const user = await res.json();
+        console.log(user);
         if (user) {
           console.log(user);
           return user;
@@ -68,12 +70,26 @@ const handler = NextAuth({
       session.user = token as any;
       return session;
     },
+
+    async signIn(params) {
+      console.log("User:", params.user);
+      console.log("Account:", params.account);
+      console.log("Profile:", params.profile);
+
+      return true; // 반드시 true를 반환해야 합니다.
+    },
+    // async signIn({ user, profile }) {
+    //   // profile 객체에 이름이나 이메일 값이 있으면 해당 값을 user 객체에 저장
+    //   console.log(user);
+
+    //   return true;
+    // },
   },
   // 📍 5: 여기가 추가된 부분
   // NextAuth가 signIn Page는 '/signin' 이란 경로를 사용하라고 알려줌
   // 기본으로 제공하는 NextAuth 로그인 페이지가 아니라 본인이 직접 만든 로그인 페이지로 이동
   pages: {
-    signIn: "/signin",
+    signIn: "/login",
   },
 });
 
