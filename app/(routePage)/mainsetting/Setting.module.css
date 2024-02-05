@@ -14,7 +14,21 @@
 .mainSettigContent {
   width: 100%;
 }
-.mainSettigContent > div {
+.mainSettigContent > div:first-child {
+  margin-bottom: 5px;
+  outline: 1px solid #ddd;
+  background-color: #efefef;
+  box-sizing: 0px 0px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+.mainSettigContent > div:first-child > button {
+  width: 68px;
+  height: 30px;
+  margin: 2.4px;
+  background-color: #ddd;
+  font-size: 12px;
+}
+.mainSettigContent > div:last-child {
   margin-bottom: 5px;
   background-color: red;
 }

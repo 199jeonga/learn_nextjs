@@ -23,12 +23,7 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'MBC1961GulimM';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
+
 
   /* 여기에 CSS 리셋 또는 초기화 스타일을 추가합니다. */
     html {
@@ -38,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
     body {
     width: 100%;
     height: 100%;
-    font-family: "apple GD", "NanumSquareNeo-Variable", "noto sans KR",
+    font-family:"G","E-300" ,"E-500" ,"apple GD", "NanumSquareNeo-Variable", "noto sans KR",
     "noto sans KR", sans-serif;
     }
     html,
@@ -88,12 +83,14 @@ const GlobalStyle = createGlobalStyle`
     span,
     div,
     li {
-    font-size: var(--font-size-basic);
+    font-size: 16px;
     }
     p,
     span,
     div,
-    li,
+    li{
+      font-family:"E-300" ;
+    }
     h1,
     h2,
     h3,
@@ -105,8 +102,11 @@ const GlobalStyle = createGlobalStyle`
     button,
     a,
     label {
-    font-size: var(--font-size-small);
-    font-family: var(--font-point);
+    font-size:16px;
+    font-family:"G"
+    }
+    button{
+      border-radius:4px;
     }
     ul,
     li,
